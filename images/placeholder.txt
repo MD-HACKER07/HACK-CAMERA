@@ -1,0 +1,17 @@
+# Social Media Platform Images
+
+This folder should contain the following images:
+
+1. facebook.png - Facebook logo (blue "f" on white background)
+2. instagram.png - Instagram logo (colorful camera icon)
+3. twitter.png - Twitter/X logo (blue bird or black X)
+4. tiktok.png - TikTok logo (musical note icon)
+5. facebook-qr.png - QR code for Facebook login
+6. instagram-qr.png - QR code for Instagram login
+7. twitter-qr.png - QR code for Twitter login
+8. tiktok-qr.png - QR code for TikTok login
+9. background.jpg - A neutral background image
+
+You can download these images from the respective brand resource pages or create them yourself.
+
+For QR codes, you can generate them using online QR code generators that point to the actual social media platforms. 

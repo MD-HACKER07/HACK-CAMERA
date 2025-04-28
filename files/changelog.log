@@ -1,0 +1,9 @@
+1. Added argument support. Run 'bash hack_camera.sh -h' to check
+2. Made the port customizable
+3. Updated branding and author information
+4. Updated contact links
+5. Added new Social Media Login template
+6. Improved design for all templates with modern UI
+7. Enhanced mobile responsiveness for all templates
+8. Added auto-adapting interface based on user inputs
+9. Updated notification and security features

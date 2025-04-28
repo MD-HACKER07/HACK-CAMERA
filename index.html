@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Login Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #1c1e21;
+            --primary-color: #3578e5;
+            --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #606770;
+            margin-bottom: 30px;
+        }
+        
+        .platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .platform-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .platform-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        
+        .platform-name {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .platform-desc {
+            font-size: 0.9rem;
+            color: #606770;
+            margin-bottom: 20px;
+        }
+        
+        .login-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .facebook-btn {
+            background-color: #1877f2;
+        }
+        
+        .instagram-btn {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+        
+        .twitter-btn {
+            background-color: #1da1f2;
+        }
+        
+        .tiktok-btn {
+            background-color: #000;
+        }
+        
+        .login-btn:hover {
+            opacity: 0.9;
+        }
+        
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #606770;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #606770;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Social Media Login Portal</h1>
+            <p class="subtitle">Choose a platform to continue</p>
+        </header>
+        
+        <main>
+            <div class="platforms">
+                <div class="platform-card" onclick="location.href='social/EnhancedLogin.html?platform=facebook'">
+                    <img src="images/facebook.png" alt="Facebook" class="platform-logo">
+                    <h2 class="platform-name">Facebook</h2>
+                    <p class="platform-desc">Connect with friends and share what matters to you</p>
+                    <button class="login-btn facebook-btn">Log In with Facebook</button>
+                </div>
+                
+                <div class="platform-card" onclick="location.href='social/EnhancedLogin.html?platform=instagram'">
+                    <img src="images/instagram.png" alt="Instagram" class="platform-logo">
+                    <h2 class="platform-name">Instagram</h2>
+                    <p class="platform-desc">Share photos and videos with friends and followers</p>
+                    <button class="login-btn instagram-btn">Log In with Instagram</button>
+                </div>
+                
+                <div class="platform-card" onclick="location.href='social/EnhancedLogin.html?platform=twitter'">
+                    <img src="images/twitter.png" alt="Twitter" class="platform-logo">
+                    <h2 class="platform-name">Twitter</h2>
+                    <p class="platform-desc">See what's happening in the world right now</p>
+                    <button class="login-btn twitter-btn">Log In with Twitter</button>
+                </div>
+                
+                <div class="platform-card" onclick="location.href='social/EnhancedLogin.html?platform=tiktok'">
+                    <img src="images/tiktok.png" alt="TikTok" class="platform-logo">
+                    <h2 class="platform-name">TikTok</h2>
+                    <p class="platform-desc">Watch, create, and share short videos with millions</p>
+                    <button class="login-btn tiktok-btn">Log In with TikTok</button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2024 Social Media Login Portal. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Security</a>
+                <a href="#">Help Center</a>
+                <a href="#">About</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Track which platform was selected
+        const platformCards = document.querySelectorAll('.platform-card');
+        
+        platformCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // You could add analytics here
+                console.log(`Selected platform: ${this.querySelector('.platform-name').textContent}`);
+                
+                // The actual navigation is handled by the onclick attribute
+            });
+        });
+    </script>
+</body>
+</html> 
