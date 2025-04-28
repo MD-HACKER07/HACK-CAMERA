@@ -1,8 +1,5 @@
 # 📸 HACK-CAMERA Project
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/70594016/170853488-00bb3f9c-768b-4313-83ba-535683a75c82.png" alt="HACK-CAMERA Logo" width="200"/>
-</p>
 
 <p align="center">
   <a href="https://github.com/MD-HACKER07/HACK-CAMERA/stargazers"><img src="https://img.shields.io/github/stars/MD-HACKER07/HACK-CAMERA?style=for-the-badge&color=yellow"></a>
